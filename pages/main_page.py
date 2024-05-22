@@ -30,9 +30,9 @@ class MainPage(BasePage):
         self.wait_for_load_element((method, locator))
         return self.find_element((method, locator)).text
 
-    @allure.step('Получаем ожидаемый URL страницы заказа')
-    def get_url_order_page(self):
-        return Url.ORDER_PAGE
+    @allure.step('Получаем ожидаемый URL главной страницы')
+    def get_url_main_page(self):
+        return Url.MAIN_PAGE
 
     @allure.step('Ожидаем загрузку заголовка "Самокат на пару дней" на главной странице')
     def wait_for_load_page_title(self):

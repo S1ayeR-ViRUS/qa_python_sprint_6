@@ -2,7 +2,7 @@ import allure
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from locators.locators_base_page import LocatorsBasePage
-
+from data import Url
 
 class BasePage:
     def __init__(self, driver):
@@ -40,3 +40,15 @@ class BasePage:
     @allure.step('Кликаем на логотип Яндекса')
     def click_on_logo_yandex(self):
         self.click_element(LocatorsBasePage.LOGO_YANDEX)
+
+    @allure.step('Получаем ожидаемый URL страницы Дзен')
+    def get_url_dzen_page(self):
+        return Url.REDIRECT
+
+    @allure.step('Ожидаем открытие страницы Дзен')
+    def wait_for_open_dzen(self):
+        self.wait_for_open_page(Url.REDIRECT)
+
+    @allure.step('Получаем фактический URL')
+    def get_current_url(self):
+        return self.driver.current_url

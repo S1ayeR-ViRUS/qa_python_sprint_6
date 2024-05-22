@@ -30,5 +30,5 @@ class TestMainPage:
         main_page.wait_for_load_element(locator)
         main_page.click_element(locator)
         order_page.wait_for_load_form()
-        expected_url = main_page.get_url_order_page()
-        assert driver.current_url == expected_url
+        expected_url = order_page.get_url_order_page()
+        assert order_page.get_current_url() == expected_url

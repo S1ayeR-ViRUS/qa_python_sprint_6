@@ -73,14 +73,6 @@ class OrderPage(BasePage):
         expected_result = OrderPageData.COMPLETE_ORDER_TITLE
         return expected_result
 
-    @allure.step('Ожидаем открытие страницы Дзен')
-    def wait_for_open_dzen(self):
-        self.wait_for_open_page(Url.REDIRECT)
-
-    @allure.step('Получаем ожидаемый URL главной страницы')
-    def get_url_main_page(self):
-        return Url.MAIN_PAGE
-
-    @allure.step('Получаем ожидаемый URL страницы Дзен')
-    def get_url_dzen_page(self):
-        return Url.REDIRECT
+    @allure.step('Получаем ожидаемый URL страницы заказа')
+    def get_url_order_page(self):
+        return Url.ORDER_PAGE
