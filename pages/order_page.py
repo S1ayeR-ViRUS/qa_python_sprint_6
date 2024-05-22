@@ -1,13 +1,16 @@
 import allure
 
 from data import Url, OrderPageData
-from locators.locators_base_page import LocatorsBasePage
-from locators.locators_main_page import LocatorsMainPage
 from locators.locators_order_page import LocatorsOrderPage
 from pages.base_page import BasePage
 
 
 class OrderPage(BasePage):
+
+    @allure.step('Ожидаем, загрузку формы заказа')
+    def wait_for_load_form(self):
+        self.wait_for_load_element(LocatorsOrderPage.PAGE1_TITLE)
+
     @allure.step('Заполняем формы заказа')
     def create_order(self, data_order):
         self.set_value(LocatorsOrderPage.FIRST_NAME, data_order['first_name'])
@@ -69,18 +72,6 @@ class OrderPage(BasePage):
     def get_expected_result(self):
         expected_result = OrderPageData.COMPLETE_ORDER_TITLE
         return expected_result
-
-    @allure.step('Кликаем на логотип Самоката')
-    def click_on_logo_scooter(self):
-        self.click_element(LocatorsBasePage.LOGO_SCOOTER)
-
-    @allure.step('Кликаем на логотип Яндекса')
-    def click_on_logo_yandex(self):
-        self.click_element(LocatorsBasePage.LOGO_YANDEX)
-
-    @allure.step('Ожидаем загрузку заголовка "Самокат на пару дней" на главной странице')
-    def wait_for_load_page_title(self):
-        self.wait_for_load_element(LocatorsMainPage.PAGE_TITLE)
 
     @allure.step('Ожидаем открытие страницы Дзен')
     def wait_for_open_dzen(self):

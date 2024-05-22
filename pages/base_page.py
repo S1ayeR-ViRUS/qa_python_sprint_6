@@ -1,5 +1,7 @@
+import allure
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
+from locators.locators_base_page import LocatorsBasePage
 
 
 class BasePage:
@@ -30,3 +32,11 @@ class BasePage:
 
     def switch_to_new_window(self):
         return self.driver.switch_to.window(self.driver.window_handles[1])
+
+    @allure.step('Кликаем на логотип Самоката')
+    def click_on_logo_scooter(self):
+        self.click_element(LocatorsBasePage.LOGO_SCOOTER)
+
+    @allure.step('Кликаем на логотип Яндекса')
+    def click_on_logo_yandex(self):
+        self.click_element(LocatorsBasePage.LOGO_YANDEX)

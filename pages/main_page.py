@@ -1,7 +1,6 @@
 import allure
 from data import Url
 from locators.locators_main_page import LocatorsMainPage
-from locators.locators_order_page import LocatorsOrderPage
 from pages.base_page import BasePage
 
 
@@ -14,10 +13,6 @@ class MainPage(BasePage):
     def scroll_to_block(self):
         self.scroll_to_element(LocatorsMainPage.FAQ_LIST)
         self.wait_for_load_element(LocatorsMainPage.FAQ_LIST)
-
-    @allure.step('Ожидаем, загрузку формы заказа')
-    def wait_for_load_form(self):
-        self.wait_for_load_element(LocatorsOrderPage.PAGE1_TITLE)
 
     @allure.step('Получаем текст вопроса в блоке "Вопросы о важном"')
     def click_on_question(self, index):
@@ -38,3 +33,7 @@ class MainPage(BasePage):
     @allure.step('Получаем ожидаемый URL страницы заказа')
     def get_url_order_page(self):
         return Url.ORDER_PAGE
+
+    @allure.step('Ожидаем загрузку заголовка "Самокат на пару дней" на главной странице')
+    def wait_for_load_page_title(self):
+        self.wait_for_load_element(LocatorsMainPage.PAGE_TITLE)

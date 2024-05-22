@@ -2,6 +2,7 @@ import allure
 import pytest
 from locators.locators_main_page import LocatorsMainPage
 from pages.main_page import MainPage
+from pages.order_page import OrderPage
 from data import MainPageData
 
 
@@ -23,10 +24,11 @@ class TestMainPage:
     @pytest.mark.parametrize('locator', [LocatorsMainPage.HEADER_ORDER_BUTTON, LocatorsMainPage.FOOTER_ORDER_BUTTON])
     def test_click_order_button(self, driver, locator):
         main_page = MainPage(driver)
+        order_page = OrderPage(driver)
         main_page.open_main_page()
         main_page.scroll_to_element(locator)
         main_page.wait_for_load_element(locator)
         main_page.click_element(locator)
-        main_page.wait_for_load_form()
+        order_page.wait_for_load_form()
         expected_url = main_page.get_url_order_page()
         assert driver.current_url == expected_url
